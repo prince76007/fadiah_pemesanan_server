@@ -55,7 +55,7 @@
         <th>No</th>
         <!--h <th>Id Pemesanan </th> h-->
         <th align="center" class="th_border cell">Tanggal </th>
-        <th align="center" class="th_border cell">Nama Pelayan</th>
+        <th align="center" class="th_border cell">Nama Pelayan Yang Menerima</th>
         <th align="center" class="th_border cell">Total Bayar </th>
 
         <th align="center" class="th_border cell">Nomor Meja </th>

@@ -49,7 +49,7 @@ if (isset($_GET['input'])) {
         <strong>LAPORAN
 
             <?php
-            $tabelnya = "data_pelanggan";
+            $tabelnya = "data_pelayan";
             $tabelnya = str_replace("_", " ", $tabelnya);
             $tabelnya = str_replace("data", "", $tabelnya);
             $tabelnya = strtoupper($tabelnya);

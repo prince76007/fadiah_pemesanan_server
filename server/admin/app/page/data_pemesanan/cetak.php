@@ -75,9 +75,6 @@ if (isset($_GET['input'])) {
                 <th align="center" class="th_border cell"  >Tanggal </th>
                 <th align="center" class="th_border cell"  >Nama </th>
                 <th align="center" class="th_border cell"  >Total Bayar + PPN 10% </th>
-                <th align="center" class="th_border cell"  >Lat </th>
-                <th align="center" class="th_border cell"  >Lng </th>
-                <th align="center" class="th_border cell"  >Alamat Pengiriman </th>
                 <th align="center" class="th_border cell"  >Status </th>
 
 
@@ -114,9 +111,6 @@ if (isset($_GET['input'])) {
                         <td align="center"><?php echo format_indo($data['tanggal']); ?></td>
                         <td align="center"><?php echo baca_database("","nama","select * from data_pelanggan where id_pelanggan='$data[id_pelanggan]'")  ?></td>
                         <td align="center"><?php echo rupiah($data['total_bayar'] + ($data['total_bayar']*10/100) ); ?></td>
-                        <td align="center"><?php echo $data['lat']; ?></td>
-                        <td align="center"><?php echo $data['lng']; ?></td>
-                        <td align="center"><?php echo $data['alamat_pengiriman']; ?></td>
                         <td align="center"><?php echo $data['status']; ?></td>
 
 
