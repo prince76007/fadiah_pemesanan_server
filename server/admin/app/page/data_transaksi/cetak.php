@@ -73,12 +73,7 @@ if (isset($_GET['input'])) {
             <th class="th_border cell">No</th>
            <!--h <th class="th_border cell">Id Pemesanan </th> h-->
                 <th align="center" class="th_border cell"  >Tanggal </th>
-                <th align="center" class="th_border cell"  >Nama </th>
                 <th align="center" class="th_border cell"  >Total Bayar + PPN 10% </th>
-                <th align="center" class="th_border cell"  > </th>
-                <th align="center" class="th_border cell"  >Status </th>
-
-
         </tr>
 
         <tbody>
@@ -115,18 +110,14 @@ if (isset($_GET['input'])) {
                     <td align="center" width="50"><?php $no = $no + 1; echo $no; ?></td>
                     <!--h <td align="center"><?php echo $data['id_pemesanan']; ?></td> h-->
                         <td align="center"><?php echo format_indo($data['tanggal']); ?></td>
-                        <td align="center"><?php echo baca_database("","nama","select * from data_pelanggan where id_pelanggan='$data[id_pelanggan]'")  ?></td>
                         <td align="center"><?php echo rupiah($data['total_bayar'] + ($data['total_bayar']*10/100) ); ?></td>
-                        <td align="center"><?php echo $data['alamat_pengiriman']; ?></td>
-                        <td align="center"><?php echo $data['status']; ?></td>
-
-
-
                 </tr>
     <?php } ?>
-    
     <tr>
-        <td colspan="3" align="center">Total: </td><td><?php echo rupiah($sum + ($sum*10/100) );?></td>
+        <td colspan="2" align="center"></td><td></td>
+    <tr>
+    <tr>
+        <td colspan="2" align="center">Total: </td><td><?php echo rupiah($sum + ($sum*10/100) );?></td>
     <tr>
         </tbody>
     </table>
