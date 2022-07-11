@@ -73,8 +73,8 @@
         <th>Action</th>
         <th>No</th>
         <!--h <th>Id Pemesanan </th> h-->
-        <th align="center" class="th_border cell">Tanggal </th>
-        <th align="center" class="th_border cell">Total Bayar </th>
+        <th align="center" style="text-align: center;" class="th_border cell">Tanggal </th>
+        <th align="center" style="text-align: center;" class="th_border cell">Total Bayar </th>
       </tr>
 
       <tbody>
@@ -121,16 +121,6 @@
                       <?php btn_detail('Detail'); ?>
                     </a>
                   </td>
-                  <!-- <td>
-                    <a href="<?php index(); ?>?input=edit&proses=<?= encrypt($data['id_pemesanan']); ?>">
-                      <?php btn_edit('Konfirmasi'); ?>
-                    </a>
-                  </td>
-                  <td>
-                    <a href="<?php index(); ?>?input=hapus&proses=<?= encrypt($data['id_pemesanan']); ?>">
-                      <?php btn_hapus('batalkan'); ?>
-                    </a>
-                  </td> -->
                 </tr>
               </table>
             </td>
@@ -139,30 +129,8 @@
                                           echo $no; ?></td>
             <!--h <td align="center"><?php echo $data['id_pemesanan']; ?></td> h-->
             <td align="center"><?php echo format_indo($data['tanggal']); ?></td>
-            <td align="center"><?php echo baca_database("", "nama", "select * from data_pelanggan where id_pelanggan='$data[id_pelanggan]'")  ?></td>
             <td align="center"><?php echo rupiah($data['total_bayar']); ?></td>
-
-            <td align="center">
-              <?php
-              $no_meja = $data['alamat_pengiriman'];
-              if ($no_meja == "100") {
-                echo "<span class='label label-success'>Take Away</span>";
-              } else {
-                echo $no_meja . " <span class='label label-info'>Dine In</span>";
-              }
-              ?>
-            </td>
-            <td align="center">
-              <?php $st = $data["status"];
-              if ($st == "pengiriman") {
-                $st = "Pemesanan";
-              }
-              echo $st;
-              ?>
-            </td>
-
-
-          </tr>
+            </tr>
         <?php } ?>
       </tbody>
     </table>
