@@ -79,25 +79,44 @@ if (isset($_GET['input'])) {
         <tbody>
             <?php
             $no = 0;
-            if (isset($_GET['isi']) && !empty($_GET['isi'])) {
-                //BERDASARKAN
-                $Berdasarkan = mysql_real_escape_string($_GET['Berdasarkan']);
-                $isi = mysql_real_escape_string($_GET['isi']);
-                echo '<center> Cetak berdasarkan <b>' . $Berdasarkan . '</b> : <b>' . $isi . '</b></center>';
-                $querytabel = "SELECT * FROM data_pemesanan where $Berdasarkan like '%$isi%'";
-            } else if (isset($_GET['tanggal1']) && !empty($_GET['tanggal1'])) {
-                //PERIODE
-                $Berdasarkan = mysql_real_escape_string($_GET['Berdasarkan']);
-                $tanggal1 = mysql_real_escape_string($_GET['tanggal1']);
-                $tanggal2 = mysql_real_escape_string($_GET['tanggal2']);
-                $tanggal1_indo = format_indo($tanggal1);
-                $tanggal2_indo = format_indo($tanggal2);
-                echo '<center> Cetak Berdasarkan <b>' . $Berdasarkan . '</b> Dari Tanggal <b>' . $tanggal1_indo . '</b> s/d <b>' . $tanggal2_indo . '</b></center>';
-                $querytabel = "SELECT * FROM data_pemesanan where ($Berdasarkan BETWEEN '$tanggal1' AND '$tanggal2')";
-            } else {
-                //SEMUA
-                $querytabel = "SELECT * FROM data_pemesanan";
-            }
+            $sdate="";
+          $filter="SELECT * FROM data_pemesanan where ";
+        if (isset($_GET['tanggal1']) && !empty($_GET['tanggal1'])) {
+          $sdate = $filter." tanggal >='".mysql_real_escape_string($_GET['tanggal1'])."'";
+          // $isi = mysql_real_escape_string($_GET['isi']);
+          $querytabel=$sdate." LIMIT 0 , 10";
+          $querypagination = "SELECT COUNT(*) AS total FROM data_pemesanan where $querytabel";
+        } if(isset($_GET['tanggal2']) && !empty($_GET['tanggal2'])){
+          if(empty($sdate)){
+            $sdate=$filter;
+          }else{
+            $sdate="$sdate AND ";
+          }
+          $edate = mysql_real_escape_string($_GET['tanggal2']);
+          $querytabel="$sdate tanggal <= '$edate' LIMIT 0 , 10";
+          $querypagination = "SELECT COUNT(*) AS total FROM data_pemesanan where $querytabel";
+        }else if((!isset($_GET['tanggal1']) && !isset($_GET['tanggal2'])) ||
+         (empty($_GET['tanggal1']) && empty($_GET['tanggal2']))) {
+          $querytabel = "SELECT * FROM data_pemesanan LIMIT 0 , 10";
+          $querypagination = "SELECT COUNT(*) AS total FROM data_pemesanan";
+        }
+            // if (isset($_GET['tanggal1']) && !empty($_GET['tanggal1'])) {
+            //     //BERDASARKAN
+            //     $Berdasarkan = mysql_real_escape_string($_GET['Berdasarkan']);
+            //     $isi = mysql_real_escape_string($_GET['isi']);
+            //     echo '<center> Cetak berdasarkan <b>' . $Berdasarkan . '</b> : <b>' . $isi . '</b></center>';
+            //     $querytabel = "SELECT * FROM data_pemesanan where $Berdasarkan like '%$isi%'";
+            // } else if (isset($_GET['tanggal1']) && !empty($_GET['tanggal1'])) {
+            //     $tanggal1 = mysql_real_escape_string($_GET['tanggal1']);
+            //     $tanggal2 = mysql_real_escape_string($_GET['tanggal2']);
+            //     $tanggal1_indo = format_indo($tanggal1);
+            //     $tanggal2_indo = format_indo($tanggal2);
+            //     echo '<center> Cetak Berdasarkan <b>' . $Berdasarkan . '</b> Dari Tanggal <b>' . $tanggal1_indo . '</b> s/d <b>' . $tanggal2_indo . '</b></center>';
+            //     $querytabel = "SELECT * FROM data_pemesanan where ($Berdasarkan BETWEEN '$tanggal1' AND '$tanggal2')";
+            // } else {
+            //     //SEMUA
+            //     $querytabel = "SELECT * FROM data_pemesanan";
+            // }
            
             $proses = mysql_query($querytabel);
             $nstrg="SELECT sum(total_bayar) as 'sum' ";

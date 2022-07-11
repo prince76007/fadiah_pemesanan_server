@@ -103,7 +103,6 @@
           $querytabel = "SELECT * FROM data_pemesanan LIMIT $startRow ,$dataPerPage";
           $querypagination = "SELECT COUNT(*) AS total FROM data_pemesanan";
         }
-        echo $querytabel;
         $proses = mysql_query($querytabel);
         while ($data = mysql_fetch_array($proses)) {
         ?>
