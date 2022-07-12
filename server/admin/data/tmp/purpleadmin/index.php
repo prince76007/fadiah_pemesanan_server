@@ -93,7 +93,7 @@ foreach($m as $i){if($i->t == 's' ){
 		  
 		  <li class="nav-item">
             <a class="nav-link" href="<?php echo $i->l;?>">
-              <span class="menu-title"><font color="#9b9b9b"><?php echo $i->n;?></font></span>
+              <span class="menu-title"><font color="#000000"><?php echo $i->n;?></font></span>
             
             </a>
           </li>
@@ -109,7 +109,7 @@ foreach($m as $i){if($i->t == 's' ){
 				  
 				     <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-<?php echo $i1->id;?>" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title"><FONT COLOR="#9b9b9b"><?php echo $i->n;?></FONT></span>
+              <span class="menu-title"><FONT COLOR="#000000"><?php echo $i->n;?></FONT></span>
               <i class="menu-arrow"></i>
              
             </a>
